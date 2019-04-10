@@ -7,7 +7,7 @@ public class TransientTest {
         User user = new User();
         user.setUsername("Zigar");
         user.setPasswd("123456");
-        user.setAge((short)30);
+        User.age = (short)30;
         System.out.println("read before Serializable: ");
         System.out.println("username: " + user.getUsername());
         System.out.println("password: " + user.getPasswd());
@@ -39,9 +39,7 @@ public class TransientTest {
             ExternalizableTest et_in = (ExternalizableTest) in.readObject();
             System.out.println(et_in.content);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -61,25 +59,21 @@ class User implements Serializable{
         return age;
     }
 
-    void setAge(Short age) {
-        this.age = age;
-    }
 
 
-
-    public String getUsername() {
+    String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPasswd() {
+    String getPasswd() {
         return passwd;
     }
 
-    public void setPasswd(String passwd) {
+    void setPasswd(String passwd) {
         this.passwd = passwd;
     }
 }
@@ -87,7 +81,7 @@ class User implements Serializable{
 class ExternalizableTest implements Externalizable {
     private static final long serialVersionUID = -2513747641863637393L;
 
-    public transient String content = "Content: Yes, I'll always be serialized whether or not I'm transient";
+    transient String content = "Content: Yes, I'll always be serialized whether or not I'm transient";
 
     public ExternalizableTest(){
 
