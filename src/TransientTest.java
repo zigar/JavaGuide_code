@@ -1,12 +1,24 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class TransientTest {
 
     public static void main(String[] args) {
         ExternalizableTest et = new ExternalizableTest();
         User user = new User();
-        user.setUsername("Zigar");
-        user.setPasswd("123456");
+        String username = "";
+        String password = "";
+        Scanner scanner =  new Scanner(System.in);
+        System.out.println("Please input username:");
+        if(scanner.hasNextLine()){
+            username = scanner.nextLine();
+        }
+        System.out.println("Please input password:");
+        if(scanner.hasNextLine()){
+            password = scanner.nextLine();
+        }
+        user.setUsername(username);
+        user.setPasswd(password);
         User.age = (short)30;
         System.out.println("read before Serializable: ");
         System.out.println("username: " + user.getUsername());
